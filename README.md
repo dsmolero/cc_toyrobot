@@ -61,3 +61,12 @@ Rules
 * The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot. 
 * Any
 move that would cause the robot to fall must be ignored.
+
+
+Usage
+-----
+
+First create a virtual environment for this project.
+
+    $ conda create --name toyrobot python=3.9.6
+
