@@ -1,0 +1,68 @@
+# MacOS
+._*
+.DS_Store
+
+# IDEs
+.idea
+.vscode
+.project
+.pydevproject
+.geanyprj
+
+# Text Editors
+*~
+
+# Node.js
+node_modules/
+
+# Version Control
+.hg
+.git
+.svn
+*.orig
+
+# python
+*.pyc
+*.pyo
+pip-log.txt
+build/
+dist/
+
+# Backup files
+*.old
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+
+# Log files
+log/
+logs/
+*.log
+
+# code coverage
+.coverage
+
+# Windows
+*Thumbs.db
+
+# Docker
+.env
+
+# Databases
+*.sqlite3
+*.sqlite
+*.db
+postgresql/
+
+# local dev
+local.py
+_local.py
+localsettings.py
+collected_static/
+media/
+
+# temporary
+tmp/
+temp/
