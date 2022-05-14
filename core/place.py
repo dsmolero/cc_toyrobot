@@ -1,9 +1,8 @@
-from logging import getLogger
+from core.toyrobot import ToyRobot
+from settings import Face
 
-log = getLogger(__name__)
 
-
-def place(bot, x, y, f):
+def place(bot:ToyRobot, x:int, y:int, f:Face):
     bot.set_x(x)
     bot.set_y(y)
     bot.set_f(f)

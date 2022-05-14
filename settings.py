@@ -21,9 +21,16 @@ class Face(Enum):
     SOUTH: str = 'south'
 
 
+ToyRobot.command_map = {
+    Command.PLACE: 'core.place.place',
+    Command.MOVE: 'core.move.move',
+}
+
 ToyRobot.validators = [
     'core.validators.place.check_3_parameters',
     'core.validators.place.check_x_param',
     'core.validators.place.check_y_param',
     'core.validators.place.check_f_param',
+    'core.validators.move.check_no_parameters',
+    'core.validators.move.check_out_of_bounds',
 ]

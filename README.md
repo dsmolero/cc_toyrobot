@@ -70,3 +70,14 @@ First create a virtual environment for this project.
 
     $ conda create --name toyrobot python=3.9.6
 
+Activate the virtual environment
+
+    $ conda activate toyrobot
+
+Install requirements
+
+    $ pip install -r requirements.txt
+
+Run tests
+
+    $ pytest -s tests

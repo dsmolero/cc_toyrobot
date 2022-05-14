@@ -36,10 +36,14 @@ class ToyRobot:
 
     def dispatch(self, command, *args, **kwargs):
         for validator in ToyRobot.validators:
-            names = validator.split('.')
-            module = importlib.import_module('.'.join(names[:-1]))
-            func = getattr(module, names[-1])
+            func = self.import_module_and_get_func(validator)
             if not func(self, command, *args, **kwargs):
                 return False
-        func = ToyRobot.command_map[command]
+        full_module_name = ToyRobot.command_map[command]
+        func = self.import_module_and_get_func(full_module_name)
         return func(self, *args, **kwargs)
+
+    def import_module_and_get_func(self, full_module_name):
+        names = full_module_name.split('.')
+        module = importlib.import_module('.'.join(names[:-1]))
+        return getattr(module, names[-1])
