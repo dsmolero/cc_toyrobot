@@ -25,6 +25,7 @@ ToyRobot.command_map = {
     Command.PLACE: 'core.place.place',
     Command.MOVE: 'core.move.move',
     Command.LEFT: 'core.left.left',
+    Command.RIGHT: 'core.right.right',
 }
 
 ToyRobot.validators = [
