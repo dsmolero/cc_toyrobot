@@ -24,6 +24,7 @@ class Face(Enum):
 ToyRobot.command_map = {
     Command.PLACE: 'core.place.place',
     Command.MOVE: 'core.move.move',
+    Command.LEFT: 'core.left.left',
 }
 
 ToyRobot.validators = [
