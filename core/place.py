@@ -1,3 +1,9 @@
+from logging import getLogger
 
-def place(x, y, f):
-    pass
+log = getLogger(__name__)
+
+
+def place(bot, x, y, f):
+    bot.set_x(x)
+    bot.set_y(y)
+    bot.set_f(f)
