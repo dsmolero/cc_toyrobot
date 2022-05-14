@@ -1,4 +1,5 @@
-from settings import Command, Face
+# import logging as log
+from settings import Command, Face, TABLE_SIZE_X, TABLE_SIZE_Y
 from logging import getLogger
 
 
@@ -33,6 +34,9 @@ def check_x_param(bot, command, *args, **kwargs):
     if type(x) != int:
         log.error('place command requires x parameter as integer')
         return False
+    if x < 0 or x >= TABLE_SIZE_X:
+        log.error('place command got a negative value for parameter x')
+        return False
     return True
 
 @is_place_command
@@ -46,6 +50,9 @@ def check_y_param(bot, command, *args, **kwargs):
         y = args[1]
     if type(y) != int:
         log.error('place command requires y parameter as integer')
+        return False
+    if y < 0 or y >= TABLE_SIZE_X:
+        log.error('place command got a negative value for parameter y')
         return False
     return True
 
