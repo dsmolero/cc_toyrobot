@@ -3,11 +3,11 @@ from core.toyrobot import ToyRobot
 
 
 class Command(Enum):
-    PLACE: str = 'place'
-    MOVE: str = 'move'
-    LEFT: str = 'left'
-    RIGHT: str = 'right'
-    REPORT: str = 'report'
+    PLACE = 'place'
+    MOVE = 'move'
+    LEFT = 'left'
+    RIGHT = 'right'
+    REPORT = 'report'
 
 
 TABLE_SIZE_X = 5
@@ -22,11 +22,11 @@ class Face(Enum):
 
 
 ToyRobot.command_map = {
-    Command.PLACE: 'core.place.place',
-    Command.MOVE: 'core.move.move',
-    Command.LEFT: 'core.left.left',
-    Command.RIGHT: 'core.right.right',
-    Command.REPORT: 'core.report.report',
+    Command.PLACE.value: 'core.place.place',
+    Command.MOVE.value: 'core.move.move',
+    Command.LEFT.value: 'core.left.left',
+    Command.RIGHT.value: 'core.right.right',
+    Command.REPORT.value: 'core.report.report',
 }
 
 ToyRobot.validators = [
@@ -35,9 +35,14 @@ ToyRobot.validators = [
     'core.validators.place.check_y_param',
     'core.validators.place.check_f_param',
     'core.validators.left.check_no_parameters',
+    'core.validators.left.check_bot_must_be_placed',
     'core.validators.right.check_no_parameters',
+    'core.validators.right.check_bot_must_be_placed',
     'core.validators.move.check_no_parameters',
+    'core.validators.move.check_bot_must_be_placed',
     'core.validators.move.check_will_go_out_of_bounds',
     'core.validators.report.check_no_parameters',
     'core.validators.report.check_bot_must_be_placed',
 ]
+
+HELP_FILE = 'help-text.txt'

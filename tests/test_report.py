@@ -14,7 +14,7 @@ class TestReportAfterPlace:
 
 class TestReportMiscCases:
 
-    @patch('core.validators.report.log')
+    @patch('core.validators.common.log')
     def test_report_before_place(self, mock_log):
         bot = ToyRobot()
         bot.dispatch(Command.REPORT)

@@ -72,7 +72,7 @@ class TestMove:
 
 class TestMoveMiscCases:
 
-    @patch('core.validators.report.log')
+    @patch('core.validators.common.log')
     def test_move_before_place(self, mock_log):
         bot = ToyRobot()
         bot.dispatch(Command.MOVE)

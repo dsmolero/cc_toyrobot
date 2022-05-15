@@ -8,7 +8,7 @@ log = getLogger(__name__)
 def is_place_command(func):
 
     def wrapper(bot, command, *args, **kwargs):
-        if command != Command.PLACE:
+        if command not in [Command.PLACE, Command.PLACE.value]:
             return True
         return func(bot, command, *args, **kwargs)
     return wrapper
@@ -17,7 +17,7 @@ def is_place_command(func):
 @is_place_command
 def check_3_parameters(bot, command, *args, **kwargs):
     if len(args) + len(kwargs.items()) != 3:
-        log.error('place command must have 3 parameters')
+        log.error(f'place command must have 3 parameters; received {args} {kwargs}')
         return False
     return True
 
@@ -65,6 +65,6 @@ def check_f_param(bot, command, *args, **kwargs):
     else:
         f = args[2]
     if type(f) != Face:
-        log.error('place command requires f parameter as Face')
+        log.error('place command requires f parameter as either north, east, south or west')
         return False
     return True

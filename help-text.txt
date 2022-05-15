@@ -6,7 +6,7 @@
         - this should be the first command issued before any other toy robot movements can be made.
 
         syntax:
-            place <x>,<y>,<direction>
+            place <x>,<y>,<f>
 
             x -> is the vertical column on the table
             y -> is the horizontal row on the table

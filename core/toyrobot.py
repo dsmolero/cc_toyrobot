@@ -39,6 +39,10 @@ class ToyRobot:
             func = self._import_module_and_get_func(validator)
             if not func(self, command, *args, **kwargs):
                 return False
+        try:
+            command = command.value
+        except AttributeError:
+            pass
         full_module_name = ToyRobot.command_map[command]
         func = self._import_module_and_get_func(full_module_name)
         return func(self, *args, **kwargs)
