@@ -1,5 +1,5 @@
 from logging import getLogger
-from settings import Command, Face, TABLE_SIZE_X, TABLE_SIZE_Y
+from settings import Face, TABLE_SIZE_X, TABLE_SIZE_Y
 
 
 log = getLogger(__name__)

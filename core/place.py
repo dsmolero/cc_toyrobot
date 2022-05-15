@@ -1,5 +1,4 @@
 from core.toyrobot import ToyRobot
-from settings import Face
 
 
 def place(bot:ToyRobot, x:int, y:int, f:str):

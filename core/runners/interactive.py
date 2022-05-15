@@ -1,8 +1,5 @@
 from logging import getLogger
-from core.command_parser import parse_cmd, parse_place_params
 from core.runners.common import Runner
-from core.toyrobot import ToyRobot
-from settings import Command, TABLE_SIZE_X, TABLE_SIZE_Y, HELP_FILE, HELP_COMMANDS
 
 
 log = getLogger(__name__)
