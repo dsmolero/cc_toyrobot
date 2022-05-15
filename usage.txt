@@ -9,7 +9,7 @@ To run in interactive mode:
 
 To run with a Toy Robot script file:
 
-    $ python main.py <script-file-name>
+    $ python main.py <path/to/script-file>
 
     example:
 

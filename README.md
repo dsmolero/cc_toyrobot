@@ -88,6 +88,12 @@ To run in interactive mode:
 
 To run with a script:
 
+    $ python main.py <path/to/script-file>
+
+where path/to/script-file contains the toy robot commands.
+
+example:
+
     $ python main.py bot-script.trs
 
-where bot-script.trs contains the toy robot commands.
+will run the sample bot-script.trs file provided. 

@@ -1,9 +1,9 @@
 from logging import getLogger
 from core.runners.common import Runner
+from settings import EXIT_COMMANDS
 
 
 log = getLogger(__name__)
-EXIT_COMMANDS = ['quit', 'exit', 'q', 'x']
 
 
 def interactive_runner():
