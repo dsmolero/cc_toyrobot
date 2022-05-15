@@ -1,7 +1,8 @@
 import pytest
-from settings import Command, Face
 from dataclasses import dataclass
-from core import toyrobot
+from unittest.mock import patch
+from core.toyrobot import ToyRobot
+from settings import Command, Face
 
 
 class TestLeftDontMove:
@@ -9,7 +10,7 @@ class TestLeftDontMove:
     def test_dont_move(self):
         x = 3
         y = 2
-        bot = toyrobot.ToyRobot()
+        bot = ToyRobot()
         bot.dispatch(Command.PLACE, x=x, y=y, f=Face.NORTH)
         for ii in range(4):
             bot.dispatch(Command.LEFT)
@@ -26,7 +27,7 @@ class TestLeftNewFace:
 
     @dataclass
     class Fixture:
-        bot: toyrobot.ToyRobot
+        bot: ToyRobot
         new_f: str
 
     @pytest.fixture(
@@ -45,7 +46,7 @@ class TestLeftNewFace:
     )
     def setup(self, request):
         param = request.param
-        bot = toyrobot.ToyRobot()
+        bot = ToyRobot()
         bot.dispatch(Command.PLACE, x=3, y=2, f=param.f)
         bot.dispatch(Command.LEFT)
         return TestLeftNewFace.Fixture(
@@ -53,5 +54,21 @@ class TestLeftNewFace:
             new_f=param.new_f
         )
 
-    def test_left(self, setup: Fixture):
+    def test_left(self, setup:Fixture):
         assert setup.bot.f == setup.new_f
+
+
+class TestLeftMiscCases:
+
+    @patch('core.validators.report.log')
+    def test_left_before_place(self, mock_log):
+        bot = ToyRobot()
+        bot.dispatch(Command.LEFT)
+        mock_log.error.assert_called_once()
+
+    @patch('core.validators.common.log')
+    def test_left_with_unexpected_params(self, mock_log):
+        bot = ToyRobot()
+        bot.dispatch(Command.PLACE, x=3, y=3, f=Face.NORTH)
+        bot.dispatch(Command.LEFT, 'some_param', unexpected_param='unexpected param')
+        mock_log.error.assert_called_once()

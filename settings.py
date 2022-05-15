@@ -34,7 +34,10 @@ ToyRobot.validators = [
     'core.validators.place.check_x_param',
     'core.validators.place.check_y_param',
     'core.validators.place.check_f_param',
+    'core.validators.left.check_no_parameters',
+    'core.validators.right.check_no_parameters',
     'core.validators.move.check_no_parameters',
     'core.validators.move.check_will_go_out_of_bounds',
+    'core.validators.report.check_no_parameters',
     'core.validators.report.check_bot_must_be_placed',
 ]

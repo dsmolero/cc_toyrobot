@@ -1,5 +1,6 @@
-from settings import Command, Face, TABLE_SIZE_X, TABLE_SIZE_Y
 from logging import getLogger
+from core.validators import common
+from settings import Command, Face, TABLE_SIZE_X, TABLE_SIZE_Y
 
 
 log = getLogger(__name__)
@@ -16,12 +17,11 @@ def is_move_command(func):
 
 @is_move_command
 def check_no_parameters(bot, command, *args, **kwargs):
-    if args or kwargs:
-        return False
-    return True
+    return common.check_no_parameters(bot, command, *args, **kwargs)
+
 
 @is_move_command
-def check_out_of_bounds(bot, command, *args, **kwargs):
+def check_will_go_out_of_bounds(bot, command, *args, **kwargs):
     if bot.f == Face.NORTH and bot.y >= TABLE_SIZE_Y - 1:
         log.error(f"bot can't move {bot.f}, bot.y={bot.y} TABLE_SIZE_Y={TABLE_SIZE_Y}")
         return False

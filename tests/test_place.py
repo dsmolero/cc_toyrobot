@@ -2,7 +2,7 @@ import pytest
 from settings import Command, Face, TABLE_SIZE_X, TABLE_SIZE_Y
 from unittest.mock import Mock, patch
 from dataclasses import dataclass
-from core import toyrobot
+from core.toyrobot import ToyRobot
 
 
 class TestPlace:
@@ -19,7 +19,7 @@ class TestPlace:
         x: object
         y: object
         f: str
-        bot: toyrobot.ToyRobot
+        bot: ToyRobot
         mock_log: Mock
         is_valid: bool
 
@@ -47,7 +47,7 @@ class TestPlace:
     )
     @patch('core.validators.place.log')
     def setup(self, mock_log, request):
-        bot: toyrobot.ToyRobot = toyrobot.ToyRobot()
+        bot = ToyRobot()
         kwargs = {'x': request.param.x, 'y': request.param.y, 'f': request.param.f}
         bot.dispatch(Command.PLACE, **kwargs)
         return TestPlace.Fixture(

@@ -2,7 +2,7 @@ import pytest
 from settings import Command, Face
 from unittest.mock import Mock, patch
 from dataclasses import dataclass
-from core import toyrobot
+from core.toyrobot import ToyRobot
 
 
 class TestMove:
@@ -18,7 +18,7 @@ class TestMove:
 
     @dataclass
     class Fixture:
-        bot: toyrobot.ToyRobot
+        bot: ToyRobot
         new_x: int
         new_y: int
         can_move: bool
@@ -30,10 +30,10 @@ class TestMove:
             'test valid move to the east',
             'test valid move to the south',
             'test valid move to the west',
-            'test invalid move to the north',
-            'test invalid move to the east',
-            'test invalid move to the south',
-            'test invalid move to the west',
+            'test move to the north will go out of bounds',
+            'test move to the east will go out of bounds',
+            'test move to the south will go out of bounds',
+            'test move to the west will go out of bounds',
         ],
         params=[
             Parameter(x=1, y=3, f=Face.NORTH, new_x=1, new_y=4, can_move=True),
@@ -49,7 +49,7 @@ class TestMove:
     @patch('core.validators.move.log')
     def setup(self, mock_log: Mock, request):
         param = request.param
-        bot = toyrobot.ToyRobot()
+        bot = ToyRobot()
         bot.dispatch(Command.PLACE, x=param.x, y=param.y, f=param.f)
         bot.dispatch(Command.MOVE)
         return TestMove.Fixture(
@@ -68,3 +68,19 @@ class TestMove:
             assert not has_errors
         else:
             assert has_errors
+
+
+class TestMoveMiscCases:
+
+    @patch('core.validators.report.log')
+    def test_move_before_place(self, mock_log):
+        bot = ToyRobot()
+        bot.dispatch(Command.MOVE)
+        mock_log.error.assert_called_once()
+
+    @patch('core.validators.common.log')
+    def test_move_with_unexpected_params(self, mock_log):
+        bot = ToyRobot()
+        bot.dispatch(Command.PLACE, x=3, y=3, f=Face.NORTH)
+        bot.dispatch(Command.MOVE, 'some_param', unexpected_param='unexpected param')
+        mock_log.error.assert_called_once()
