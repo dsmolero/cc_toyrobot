@@ -64,7 +64,10 @@ def check_f_param(bot, command, *args, **kwargs):
         f = kwargs['f']
     else:
         f = args[2]
-    if type(f) != Face:
-        log.error('place command requires f parameter as either north, east, south or west')
+    if type(f) != str:
+        log.error('place command requires f parameter as string')
+        return False
+    if f not in [Face.NORTH.value, Face.EAST.value, Face.SOUTH.value, Face.WEST.value]:
+        log.error('place command requires f as either "north", "east", "south" or "west"')
         return False
     return True

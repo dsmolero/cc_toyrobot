@@ -35,13 +35,13 @@ class TestPlace:
             'test f should only be either NORTH, EAST, WEST or SOUTH',
         ],
         params=[
-            Parameter(x=0, y=0, f=Face.NORTH, is_valid=True),
-            Parameter(x='3', y=2, f=Face.NORTH, is_valid=False),
-            Parameter(x=2, y='3', f=Face.NORTH, is_valid=False),
-            Parameter(x=-1, y=3, f=Face.NORTH, is_valid=False),
-            Parameter(x=3, y=-1, f=Face.NORTH, is_valid=False),
-            Parameter(x=TABLE_SIZE_X + 1, y=1, f=Face.NORTH, is_valid=False),
-            Parameter(x=1, y=TABLE_SIZE_Y + 1, f=Face.NORTH, is_valid=False),
+            Parameter(x=0, y=0, f=Face.NORTH.value, is_valid=True),
+            Parameter(x='3', y=2, f=Face.NORTH.value, is_valid=False),
+            Parameter(x=2, y='3', f=Face.NORTH.value, is_valid=False),
+            Parameter(x=-1, y=3, f=Face.NORTH.value, is_valid=False),
+            Parameter(x=3, y=-1, f=Face.NORTH.value, is_valid=False),
+            Parameter(x=TABLE_SIZE_X, y=1, f=Face.NORTH.value, is_valid=False),
+            Parameter(x=1, y=TABLE_SIZE_Y, f=Face.NORTH.value, is_valid=False),
             Parameter(x=4, y=4, f='CENTER', is_valid=False),
         ]
     )
@@ -58,11 +58,10 @@ class TestPlace:
         )
 
     def test_place(self, setup):
-        has_errors = setup.mock_log.error.call_count > 0
         if setup.is_valid:
             assert setup.bot.x == setup.x
             assert setup.bot.y == setup.y
             assert setup.bot.f == setup.f
-            assert not has_errors
+            assert setup.mock_log.error.call_count == 0
         else:
-            assert has_errors
+            setup.mock_log.error.assert_called_once()

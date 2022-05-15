@@ -11,7 +11,7 @@ class TestLeftDontMove:
         x = 3
         y = 2
         bot = ToyRobot()
-        bot.dispatch(Command.PLACE, x=x, y=y, f=Face.NORTH)
+        bot.dispatch(Command.PLACE, x=x, y=y, f=Face.NORTH.value)
         for ii in range(4):
             bot.dispatch(Command.LEFT)
             assert bot.x == x
@@ -47,11 +47,11 @@ class TestLeftNewFace:
     def setup(self, request):
         param = request.param
         bot = ToyRobot()
-        bot.dispatch(Command.PLACE, x=3, y=2, f=param.f)
+        bot.dispatch(Command.PLACE, x=3, y=2, f=param.f.value)
         bot.dispatch(Command.LEFT)
         return TestLeftNewFace.Fixture(
             bot=bot,
-            new_f=param.new_f
+            new_f=param.new_f.value
         )
 
     def test_left(self, setup:Fixture):

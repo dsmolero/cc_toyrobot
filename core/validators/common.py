@@ -18,7 +18,7 @@ def check_bot_must_be_placed(bot, command, *args, **kwargs):
         ret = False
     elif bot.y < 0 or bot.y >= TABLE_SIZE_Y:
         ret = False
-    elif bot.f not in [Face.NORTH, Face.EAST, Face.SOUTH, Face.WEST]:
+    elif bot.f not in [Face.NORTH.value, Face.EAST.value, Face.SOUTH.value, Face.WEST.value]:
         ret = False
     if not ret:
         log.error(f'{command} requires the toy robot to be placed on the table')

@@ -7,13 +7,17 @@ log = getLogger(__name__)
 
 
 def left(bot:ToyRobot):
-    if bot.f == Face.NORTH:
-        bot.set_f(Face.WEST)
-    elif bot.f == Face.EAST:
-        bot.set_f(Face.NORTH)
-    elif bot.f == Face.SOUTH:
-        bot.set_f(Face.EAST)
-    elif bot.f == Face.WEST:
-        bot.set_f(Face.SOUTH)
+    try:
+        face = bot.f.value
+    except AttributeError:
+        face = bot.f
+    if face == Face.NORTH.value:
+        bot.set_f(Face.WEST.value)
+    elif face == Face.EAST.value:
+        bot.set_f(Face.NORTH.value)
+    elif face == Face.SOUTH.value:
+        bot.set_f(Face.EAST.value)
+    elif face == Face.WEST.value:
+        bot.set_f(Face.SOUTH.value)
     else:
-        log.error(f'invalid bot Face value {bot.f}')
+        log.error(f'invalid bot Face value {face}')

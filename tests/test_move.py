@@ -50,7 +50,7 @@ class TestMove:
     def setup(self, mock_log: Mock, request):
         param = request.param
         bot = ToyRobot()
-        bot.dispatch(Command.PLACE, x=param.x, y=param.y, f=param.f)
+        bot.dispatch(Command.PLACE, x=param.x, y=param.y, f=param.f.value)
         bot.dispatch(Command.MOVE)
         return TestMove.Fixture(
             bot=bot,
@@ -61,13 +61,12 @@ class TestMove:
         )
 
     def test_move(self, setup: Fixture):
-        has_errors = setup.mock_log.error.call_count > 0
         if setup.can_move:
             assert setup.bot.x == setup.new_x
             assert setup.bot.y == setup.new_y
-            assert not has_errors
+            assert setup.mock_log.error.call_count == 0
         else:
-            assert has_errors
+            setup.mock_log.error.assert_called_once()
 
 
 class TestMoveMiscCases:
