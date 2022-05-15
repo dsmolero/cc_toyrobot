@@ -1,0 +1,67 @@
+    The toy robot can only be placed and moved on a {TABLE_SIZE_X}x{TABLE_SIZE_Y} table.
+    The table coordinates are zero based.
+
+    place
+        - this command places the toy robot on the table.
+        - this should be the first command issued before any other toy robot movements can be made.
+
+        syntax:
+            place <x>,<y>,<direction>
+
+            x -> is the vertical column on the table
+            y -> is the horizontal row on the table
+            f -> is the direction the toy robot will face; can either be 'north', 'east', 'south' or 'west'
+
+        example:
+            place 3,2,east
+
+            This will place the robot on column 3, row 2 and facing east.
+
+    left
+        - this command will turn the toy robot 90 degrees counter-clockwise.
+        - if you turn the toy robot before it is placed, the command is ignored.
+
+        syntax:
+            left
+
+        example:
+            left
+
+            If the toy robot was facing north, this command will turn the toy robot towards the west.
+
+    right
+        - this will turn the toy robot 90 degrees clockwise.
+        - if you turn the toy robot before it is placed, the command is ignored.
+
+        syntax:
+            right
+
+        example:
+            right
+
+            If the toy robot was facing north, this command will turn the toy robot towards the east.
+
+    move
+        - this command moves the toy robot one grid unit towards the direction it is facing.
+        - if you move the toy robot before it is placed, the command is ignored.
+        - if the move will throw the toy robot off the table, the command is ignored.
+
+        syntax:
+            move
+
+        example:
+            move
+
+            This will move the robot one grid unit towards the direction it is facing only if it is valid.
+
+    report
+        - this command will output the toy robot's current coordinates and the current direction it is facing.
+
+        syntax:
+            report
+
+        example:
+            report
+
+            If the toy robot is at 3, 2 and facing south, the output would be:
+            "3,2,south"

@@ -68,7 +68,7 @@ Usage
 
 First create a virtual environment for this project.
 
-    $ conda create --name toyrobot python=3.9.6
+    $ conda create --name toyrobot python=3.9.12
 
 Activate the virtual environment
 
