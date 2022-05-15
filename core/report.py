@@ -1,3 +1,5 @@
+from core.toyrobot import ToyRobot
 
-def report():
-    pass
+
+def report(bot:ToyRobot):
+    return f'{bot.x},{bot.y},{bot.f.value.upper()}'

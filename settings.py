@@ -26,6 +26,7 @@ ToyRobot.command_map = {
     Command.MOVE: 'core.move.move',
     Command.LEFT: 'core.left.left',
     Command.RIGHT: 'core.right.right',
+    Command.REPORT: 'core.report.report',
 }
 
 ToyRobot.validators = [
@@ -34,5 +35,6 @@ ToyRobot.validators = [
     'core.validators.place.check_y_param',
     'core.validators.place.check_f_param',
     'core.validators.move.check_no_parameters',
-    'core.validators.move.check_out_of_bounds',
+    'core.validators.move.check_will_go_out_of_bounds',
+    'core.validators.report.check_bot_must_be_placed',
 ]
