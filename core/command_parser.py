@@ -8,7 +8,7 @@ def parse_cmd(cmd:str):
     if not cmd:
         log.error('Command required')
         return None, None
-    tokens = cmd.split()
+    tokens = cmd.strip().lower().split()
     command = tokens[0]
     params = ','.join(tokens[1:])
     params = params.split(',') if params else []

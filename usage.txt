@@ -1,0 +1,16 @@
+Toy Robot
+=========
+
+Toy Robot Code Challenge given by iress
+
+To run in interactive mode:
+
+    $ python main.py
+
+To run with a Toy Robot script file:
+
+    $ python main.py <script-file-name>
+
+    example:
+
+        $ python main.py bot-script.trs

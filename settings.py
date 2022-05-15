@@ -46,3 +46,6 @@ ToyRobot.validators = [
 ]
 
 HELP_FILE = 'help-text.txt'
+USAGE_FILE = 'usage.txt'
+HELP_COMMANDS = ['help', 'h', '?', 'sos', 'rescue']
+HELP_PARAMS = HELP_COMMANDS + ['--help', '-h']

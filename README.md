@@ -81,3 +81,13 @@ Install requirements
 Run tests
 
     $ pytest -s tests
+
+To run in interactive mode:
+
+    $ python main.py
+
+To run with a script:
+
+    $ python main.py bot-script.trs
+
+where bot-script.trs contains the toy robot commands.
