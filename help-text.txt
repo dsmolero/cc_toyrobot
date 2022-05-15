@@ -65,3 +65,14 @@
 
             If the toy robot is at 3, 2 and facing south, the output would be:
             "3,2,south"
+
+    exit
+        - this command will terminate the application.
+
+        syntax:
+            exit
+
+        example:
+            exit
+
+            k, bye!

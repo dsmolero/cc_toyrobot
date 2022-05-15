@@ -1,6 +1,6 @@
 import sys
 from core.runners.interactive import interactive_runner
-from core.runners.toyrobotscript import toyrobotscript_runner
+from core.runners.toyrobotscript import script_runner
 from settings import USAGE_FILE, HELP_PARAMS
 
 
@@ -11,7 +11,6 @@ def _show_usage():
 
 if __name__ == '__main__':
     args = sys.argv
-    print(args)
     if len(args) > 2:
         _show_usage()
     elif len(args) == 2:
@@ -19,6 +18,6 @@ if __name__ == '__main__':
         if cmd_or_filename.lower() in HELP_PARAMS:
             _show_usage()
         else:
-            toyrobotscript_runner(cmd_or_filename)
+            script_runner(cmd_or_filename)
     else:
         interactive_runner()

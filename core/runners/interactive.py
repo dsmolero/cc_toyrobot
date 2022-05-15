@@ -16,7 +16,7 @@ def interactive_runner():
 def cmd_generator():
     cmd = ''
     while cmd.strip().lower() not in EXIT_COMMANDS:
-        cmd = input('Enter command:')
+        cmd = input('Enter command: ')
         yield cmd
 
 

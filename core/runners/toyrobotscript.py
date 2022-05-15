@@ -4,7 +4,7 @@ from core.runners.common import Runner
 g_script_file: str = ''
 
 
-def toyrobotscript_runner(script_file:str):
+def script_runner(script_file:str):
     global g_script_file
     g_script_file = script_file
     runner = Runner(cmd_generator)

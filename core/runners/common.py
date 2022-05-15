@@ -21,8 +21,10 @@ class Runner:
             elif command == Command.PLACE.value:
                 kwargs = parse_place_params(*params)
                 bot.dispatch(command, **kwargs)
-            else:
+            elif command in [Command.MOVE.value, Command.LEFT.value, Command.RIGHT.value, Command.REPORT.value]:
                 bot.dispatch(command)
+            else:
+                print(f'unknown command: {command}')
 
     def _show_help(self, help_file):
         with open(help_file, 'r') as help_file:
