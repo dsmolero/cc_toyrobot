@@ -5,11 +5,14 @@ from settings import Command, Face
 
 class TestReportAfterPlace:
 
-    def test_report_after_place(self):
+    @patch('builtins.print')
+    def test_report_after_place(self, mock_print):
         bot = ToyRobot()
         bot.dispatch(Command.PLACE, x=3, y=2, f=Face.EAST.value)
         actual_output = bot.dispatch(Command.REPORT)
-        assert actual_output == '3,2,EAST'
+        expected_output = '3,2,EAST'
+        assert actual_output == expected_output
+        mock_print.assert_called_once_with(expected_output)
 
 
 class TestReportMiscCases:

@@ -6,4 +6,6 @@ def report(bot:ToyRobot):
         f = bot.f.value
     except AttributeError:
         f = bot.f
-    return f'{bot.x},{bot.y},{f.upper()}'
+    output = f'{bot.x},{bot.y},{f.upper()}'
+    print(output)
+    return output
