@@ -19,7 +19,8 @@ def interactive_runner():
         elif command in ['help', '?', 'sos', 'rescue']:
             _show_help(HELP_FILE)
         elif command == Command.PLACE.value:
-            bot.dispatch(command, *params)
+            kwargs = parse_place_params(*params)
+            bot.dispatch(command, **kwargs)
         else:
             bot.dispatch(command)
     print('k, bye!')

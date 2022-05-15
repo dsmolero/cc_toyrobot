@@ -58,22 +58,14 @@ class TestParsePlaceParams:
     @pytest.fixture(
         ids=[
             'test valid args for place command',
-            'test args with four items',
-            'test args with two items',
-            'test args with one item',
-            'test args with no items',
         ],
         params=[
-            Parameter(args=['0', '1', 'north'], expected_output={'x': '0', 'y': '1', 'f': 'north'}),
-            Parameter(args=['1', '2', 'north', 'extra'], expected_output={'x': '1', 'y': '2', 'f': 'north'}),
-            Parameter(args=['2', '3'], expected_output={'x': '2', 'y': '3'}),
-            Parameter(args=['3'], expected_output={'x': '3'}),
-            Parameter(args=[], expected_output={}),
+            Parameter(args=['0', '1', 'north'], expected_output={'x': 0, 'y': 1, 'f': 'north'}),
         ]
     )
     def setup(self, request):
         param:TestParsePlaceParams.Parameter = request.param
-        actual_output = parse_place_params(param.args)
+        actual_output = parse_place_params(*param.args)
         return TestParsePlaceParams.Fixture(
             actual_output=actual_output,
             expected_output=param.expected_output
@@ -81,3 +73,31 @@ class TestParsePlaceParams:
 
     def test_parse_place_params(self, setup:Fixture):
         assert setup.actual_output == setup.expected_output
+
+
+class TestParsePlaceParamsWithInvalidArgs:
+
+    @dataclass
+    class Parameter:
+        args: list
+
+    @pytest.fixture(
+        ids=[
+            'test args with four items',
+            'test args with two items',
+            'test args with one item',
+            'test args with no items',
+        ],
+        params=[
+            Parameter(args=['1', '2', 'north', 'extra']),
+            Parameter(args=['2', '3']),
+            Parameter(args=['3']),
+            Parameter(args=[]),
+        ]
+    )
+    def setup(self, request):
+        return request.param
+
+    def test_parse_place_params_with_invalid_args(self, setup):
+        with pytest.raises(Exception) as exc:
+            parse_place_params(*setup.args)

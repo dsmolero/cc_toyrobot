@@ -15,7 +15,6 @@ def parse_cmd(cmd:str):
     return command, params
 
 
-def parse_place_params(args:list):
-    keys = ['x', 'y', 'f']
-    kwargs = dict(zip(keys, args))
+def parse_place_params(x, y, f:str):
+    kwargs = {'x': int(x), 'y': int(y), 'f': f}
     return kwargs
